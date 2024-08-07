@@ -1,0 +1,19 @@
+Package: UnionBounds
+Title: Calculate Confidence Intervals for Union Bounds
+Version: 0.1.0
+Authors@R: 
+    person(given = "Xinyue",
+           family = "Bei",
+           email = "xb21@duke.edu",
+           role = c("aut", "cre"))
+Description: The UnionBounds R package calculates confidence intervals for target parameters whose identified set is a union bound. It is based on the modified conditional inference methodology proposed by Bei (2024). The package includes three primary functions:(1)CI_ModifiedConditional: Works for general union bounds as defined in Bei (2024) Equation 1.(2)CI_RM: Computes confidence intervals for the treatment effect under relative magnitudes relaxation, whose identified set is given in Rambachan and Roth (2023) Section 2.4.1.(3)CI_SDRM: Calculates confidence intervals for the treatment effect under second differences relative magnitudes relaxation, whose identified set is given in Rambachan and Roth (2023) Section 2.4.5.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+    MASS,
+    nloptr,
+    stats
+
