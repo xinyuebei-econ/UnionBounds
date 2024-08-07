@@ -50,3 +50,15 @@ A list with ConfidenceInterval, delta_opt, c_t.
 \description{
 This function calculates confidence intervals for the treatment effect under second differences relative magnitudes relaxation.
 }
+\examples{
+# Load example data
+data(example_data, package = "UnionBounds")
+betahat <- example_data$betahat
+betaSigma <- example_data$betaSigma
+prePeriodIndices <- example_data$prePeriodIndices
+
+# Call the CI_SDRM function with the example data
+ell_post <- c(1, 0)  # the parameter of interest is tau_1, i.e. the treatment effect at time 1
+CI <- CI_SDRM(betahat, betaSigma, prePeriodIndices, ell_post, M = 1, alpha = 0.05)
+print(CI$ConfidenceInterval) # This is the confidence interval
+}

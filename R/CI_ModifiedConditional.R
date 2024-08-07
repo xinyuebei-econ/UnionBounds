@@ -14,6 +14,17 @@
 #' @param tol Tolerance level, suggested value 10^-3.
 #' @param tol_r Tolerance level, suggested value 10^-3.
 #' @return A list with ConfidenceInterval, delta_opt, c_t.
+#' @examples
+#' # Load example data
+#' data(example_data, package = "UnionBounds")
+#' betahat <- example_data$betahat
+#' betaSigma <- example_data$betaSigma
+#' prePeriodIndices <- example_data$prePeriodIndices
+#'
+#' # Call the CI_SDRM function with the example data
+#' ell_post <- c(1, 0)  # the parameter of interest is tau_1, i.e. the treatment effect at time 1
+#' CI <- CI_ModifiedConditional(deltahat, deltaSigma, Al, Au, alpha = 0.05)
+#' print(CI$ConfidenceInterval) # This is the confidence interval
 #' @export
 
 CI_ModifiedConditional<- function(deltahat, deltaSigma, Al, Au, alpha = 0.05, alphac = alpha*0.8, eta = 10^-3, B = 4000, Blarge = B*10, tol = 10^-3, tol_r = 10^-3) {
