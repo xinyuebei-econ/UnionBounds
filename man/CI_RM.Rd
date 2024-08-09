@@ -2,7 +2,7 @@
 % Please edit documentation in R/CI_RM.R
 \name{CI_RM}
 \alias{CI_RM}
-\title{CI_RM Function}
+\title{CI_RM}
 \usage{
 CI_RM(
   betahat,
@@ -20,19 +20,19 @@ CI_RM(
 )
 }
 \arguments{
-\item{betahat}{T by 1, regression coefficients, e.g. in Rambachan and Roth(2023) Equation 2.}
+\item{betahat}{T by 1, difference-in-differences coefficients, e.g. in Rambachan and Roth(2023, REStud) Equation 2.}
 
 \item{betaSigma}{T by T, covariance matrix of betahat.}
 
 \item{prePeriodIndices}{T_pre by 1, e.g. (1,2,3,4)}
 
-\item{ell_post}{T_post by 1, t(ell)*tau_post is the parameter of interest}
+\item{ell_post}{T_post by 1, ell\%*\%tau_post is the parameter of interest, see Rambachan and Roth(2023, REStud) Section 2.3.}
 
-\item{M}{1 by 1, level of relaxation.}
+\item{M}{1 by 1, level of relaxation, see Rambachan and Roth (2023, REStud) Section 2.4.1.}
 
 \item{alpha}{1 by 1, 1-alpha is the confidence level}
 
-\item{alphac}{1 by 1, a tuning parameter.}
+\item{alphac}{1 by 1, a tuning parameter, see Bei(2024) Section 3.2.}
 
 \item{eta}{1 by 1, a tuning parameter, see Bei(2024) Equation 40.}
 
@@ -40,13 +40,27 @@ CI_RM(
 
 \item{Blarge}{The number of bootstrap draws used to caluclate c^t.}
 
-\item{tol}{Tolerance level}
+\item{tol}{Tolerance level to calculate the confidence interval.}
 
-\item{tol_r}{Tolerance level, suggested value 10^-3.}
+\item{tol_r}{Tolerance level to check whether |rho| = 1}
 }
 \value{
-A list with ConfidenceInterval, delta_opt, c_t.
+A list with ConfidenceInterval, c_MC_l, c_MC_u, c_t, delta_opt
 }
 \description{
-This function calculates confidence intervals for the treatment effect under relative magnitudes relaxation.
+Constructs robust confidence intervals for the difference-in-differences estimand under relative magnitudes relaxation, see Rambachan and Roth (2023, REStud) Section 2.4.1.
+}
+\examples{
+# Load example data
+# the sample data is from Dustmann et al (2022), see Bei(2024) Section 5
+data(example_data, package = "UnionBounds")
+betahat <- example_data$betahat
+betaSigma <- example_data$betaSigma
+prePeriodIndices <- example_data$prePeriodIndices
+
+# Call the CI_RM function with the example data
+ell_post <- c(1, 0)  # the parameter of interest is the treatment effect at time 1
+CI <- CI_RM(betahat, betaSigma, prePeriodIndices, ell_post, M = 1, alpha = 0.05)
+print(CI$ConfidenceInterval) # This is the RM confidence interval
+
 }
