@@ -1,6 +1,6 @@
 # UnionBounds
 
-**UnionBounds** is an R package for calculating confidence intervals of a target parameter $\theta$ whose identified set is a union bound, i.e. $\theta \in \left[\min_{b \in \mathcal{B}} \lambda_{\ell,b}, \max_{b \in \mathcal{B}} \lambda_{u,b}\right]$. It is based on the modified conditional inference proposed by [Bei (2024)](https://xinyuebei-econ.github.io/files/Bei_Xinyue_JMP.pdf).
+**UnionBounds** is an R package for calculating confidence intervals of a target parameter $\theta$ whose identified set is a union bound, i.e. $\theta \in \left[\min_{b \in \mathcal{B}} \lambda_{\ell,b}, \max_{b \in \mathcal{B}} \lambda_{u,b}\right]$. It is based on the modified conditional inference proposed by [Bei (2024)](https://xinyuebei-econ.github.io/files/UnionBD.pdf).
 
 ## Overview
 
