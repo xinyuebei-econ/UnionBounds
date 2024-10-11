@@ -20,6 +20,7 @@ install.packages("remotes")
 # Install UnionBounds from GitHub
 remotes::install_github("xinyuebei-econ/UnionBounds")
 
+## Examples
 # load the library
 library('UnionBounds')
 
