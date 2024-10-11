@@ -19,35 +19,59 @@ install.packages("remotes")
 
 # Install UnionBounds from GitHub
 remotes::install_github("xinyuebei-econ/UnionBounds")
+```
 
 ## Examples
+
+```r
 # load the library
 library('UnionBounds')
 
-## Example for CI_ModifiedConditional
-# min{delta_1, delta_2} <= theta <= max{delta_3, delta_2}
+# view the documentation
 ?CI_ModifiedConditional
+?CI_RM
+?CI_SDRM
+```
+
+Example for CI_ModifiedConditional: $\theta \in \left[\min \left\[ \delta_1, \delta_2\right\], \max \left\[ \delta_3, \delta_2\right\]\right]$
+```r
 set.seed(0)
+
 deltaSigma <- matrix(c(1, 0, 0, 0, 1, 0, 0, 0, 1), nrow = 3, ncol = 3, byrow = TRUE)
 deltahat <- MASS::mvrnorm(n = 1, c(0,0, 0), deltaSigma)
 deltahat <- matrix(deltahat, nrow = 3, ncol = 1)
+
 Al <- matrix(c(1, 0, 0, 0, 1, 0), nrow = 2, ncol = 3, byrow = TRUE)
 Au <- matrix(c(0, 0, 1, 0, 1, 0), nrow = 2, ncol = 3, byrow = TRUE)
-# Call the CI_ModifiedConditional function
+
 CI <- CI_ModifiedConditional(deltahat, deltaSigma, Al, Au, alpha = 0.05)
 print(CI$ConfidenceInterval) # This is the confidence interval [ -2.072250  3.007971]
+```
 
-## Example for CI_RM
+Example for CI_RM
+```r
 # the sample data is from Dustmann et al (2022), see Bei(2024) Section 5
 data(example_data, package = "UnionBounds")
 
 betahat <- example_data$betahat                     # Diff in Diff estimator 
 betaSigma <- example_data$betaSigma                 # covariance matrix for Diff in Diff estimator
 prePeriodIndices <- example_data$prePeriodIndices   # number of prepolicy periods
-
-# Call the CI_RM function with the example data
 ell_post <- c(1, 0)                                 # the parameter of interest is the treatment effect at time 1
+
 CI <- CI_RM(betahat, betaSigma, prePeriodIndices, ell_post, M = 1, alpha = 0.05)
-print(CI$ConfidenceInterval) # This is the RM confidence interval
+print(CI$ConfidenceInterval)                        # This is the RM confidence interval
+```
 
+Example for CI_SDRM
+```r
+# the sample data is from Dustmann et al (2022), see Bei(2024) Section 5
+data(example_data, package = "UnionBounds")
 
+betahat <- example_data$betahat                     # Diff in Diff estimator 
+betaSigma <- example_data$betaSigma                 # covariance matrix for Diff in Diff estimator
+prePeriodIndices <- example_data$prePeriodIndices   # number of prepolicy periods
+ell_post <- c(1, 0)                                 # the parameter of interest is the treatment effect at time 1
+
+CI <- CI_SDRM(betahat, betaSigma, prePeriodIndices, ell_post, M = 1, alpha = 0.05)
+print(CI$ConfidenceInterval)                        # This is the SDRM confidence interval
+```
