@@ -6,8 +6,8 @@
 
 This package includes three main functions:
 - `CI_ModifiedConditional`: Works for general union bounds defined in Bei (2024) Equation 1.
-- `CI_RM`: Calculates CI of the treatment effect under relative magnitudes relaxation.
-- `CI_SDRM`: Calculates CI of the treatment effect under second differences relative magnitudes relaxation.
+- `CI_RM`: Calculates CI of the treatment effect under relative magnitudes relaxation in [Rambachan and Roth (2023)](https://academic.oup.com/restud/article/90/5/2555/7039335).
+- `CI_SDRM`: Calculates CI of the treatment effect under second differences relative magnitudes relaxation in [Rambachan and Roth (2023)](https://academic.oup.com/restud/article/90/5/2555/7039335).
 
 ## Installation
 
